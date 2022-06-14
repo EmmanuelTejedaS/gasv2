@@ -1,0 +1,7 @@
+{
+  "name": "gasnatural",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
