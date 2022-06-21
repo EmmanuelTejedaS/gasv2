@@ -25,7 +25,7 @@
 
 <ion-content>
     <div *ngFor="let producto of productos">
-        {{producto.nombre}}
+        <app-producto [producto]= producto></app-producto>
       </div>
 
 </ion-content>

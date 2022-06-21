@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ComponentesModule } from '../componentes/componentes.module';
 
 
 
@@ -17,7 +18,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     CommonModule,
     IonicModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ComponentesModule
   ]
 })
 export class PagesModule { }
