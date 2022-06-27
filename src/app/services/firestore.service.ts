@@ -37,4 +37,34 @@ export class FirestoreService {
     const collection = this.database.collection<tipo>(path);
     return collection.valueChanges();
   }
+
+  getCollectionQuery<tipo>(path: string, parametro: string, condicion: any, busqueda: string){
+    const collection = this.database.collection<tipo>(path, ref  => ref.where(parametro, condicion, busqueda));
+    return collection.valueChanges();
+  }
+
+  getCollectionQuery2<tipo>(path: string, parametro: string, condicion: any, busqueda: string, startAt: any){
+    if (startAt == null) {
+      startAt = new Date();
+    }
+    const collection = this.database.collection<tipo>(path,
+      ref  => ref.where(parametro, condicion, busqueda)
+      .orderBy('fecha', 'desc')
+      .limit(2)
+      .startAfter(startAt));
+    return collection.valueChanges();
+  }
+
+  getCollectionAll<tipo>(path: string, parametro: string, condicion: any, busqueda: string, startAt: any){
+    if (startAt == null) {
+      startAt = new Date();
+    }
+    const collection = this.database.collectionGroup<tipo>(path,
+      ref  => ref.where(parametro, condicion, busqueda)
+      .orderBy('fecha', 'desc')
+      .limit(2)
+      .startAfter(startAt)
+      );
+    return collection.valueChanges();
+  }
 }
