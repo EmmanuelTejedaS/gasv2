@@ -8,6 +8,7 @@ import { MispedidosComponent } from './pages/mispedidos/mispedidos.component';
 
 import { canActivate } from '@angular/fire/compat/auth-guard';
 import { map } from 'rxjs/operators';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
 
 const isAdmin = (next: any) => map( (user: any) => !!user && '187y100QW5TOVh9L0QrvNxhQq0E3' === user.uid);
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'set-productos', component: SetProductosComponent, ...canActivate(isAdmin) },
   { path: 'perfil', component: PerfilComponent},
   { path: 'mis-pedidos', component: MispedidosComponent},
+  { path: 'pedidos', component: PedidosComponent},
   { path: 'carrito', component: CarritoComponent},
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full'},
