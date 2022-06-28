@@ -40,23 +40,23 @@
   </ion-item>
 
   <ion-item>
-      <ion-label class="normal">
-              foto
-      </ion-label>
-    <ion-buttons slot="end">
-      <ion-button>
-          <label for="file-upload">
-            <ion-icon slot="icon-only" name="images"></ion-icon>
-          </label>
-           <input (change)="newImageUpload($event)" id="file-upload" style="display: none" type="file"  accept="image/*" required="true">
-       </ion-button>
-    </ion-buttons>
+    <ion-label class="normal">
+      foto
+</ion-label>
+<ion-buttons slot="end">
+<ion-button>
+  <label for="file-upload">
+    <ion-icon slot="icon-only" name="images"></ion-icon>
+  </label>
+   <input (change)="newImageUpload($event)" id="file-upload" style="display: none" type="file"  accept="image/*" required="true">
+</ion-button>
+</ion-buttons>
   
   </ion-item>
-
+  
   <ion-item>
-      <img class="image" [src]="newProducto.foto" >
-    </ion-item>
+    <img class="image" [src]="newProducto.foto">
+  </ion-item>
 
     <ion-item>
       <ion-buttons slot="end">

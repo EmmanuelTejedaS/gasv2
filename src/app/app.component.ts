@@ -27,13 +27,13 @@ export class AppComponent {
     this.firebaseauthService.stateAuth().subscribe( res => {
           if (res !== null) {
             this.idUsuario = res.uid;
-              if (this.idUsuario === 'I80yGAVUvVULfG0IMH2RLA6nZY32')  {
+              if (this.idUsuario === '187y100QW5TOVh9L0QrvNxhQq0E3')  {
                   this.admin = true;
                   this.usuario = false;
                   this.repartidor = false;
                   console.log('admin');
                   console.log('if');
-              }else if ((this.idUsuario === 'GOLYUeyuoeblZqp7mBaelcSONGk1') || (this.idUsuario === 'sBREvbV7nEVurz2hpdukea0leJG3')
+              }else if ((this.idUsuario === 'ho5WkgzjmfV6L2KnIfkGhEkwKXe2') || (this.idUsuario === 'sBREvbV7nEVurz2hpdukea0leJG3')
               || (this.idUsuario === 'mqsh290Nzce827BYKNu3Nwll3fC2')
               || (this.idUsuario === 'bUqF01m4o8V33BmnXKmaIcunQgY2')
               || (this.idUsuario === 'vM4mmiQtlrUzwhiIHvSPntyftvt1')) {
