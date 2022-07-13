@@ -88,4 +88,78 @@
     </ion-buttons>
 </ion-item>
 
+<div class="d">
+  <ion-label slot="end" class="titulo"> precios de la pipa</ion-label>
+  <!-- <ion-button (click)="nuevoPipa()" style="margin: 10px;" color="dark" >nuev pipa</ion-button> -->
+</div>
+
+<div style="text-align:end; margin: 10px;" *ngFor="let pipa of pipas " >
+  <!-- <ion-button (click)="nuevoPipa()" style="margin: 10px;" color="dark" >editar pipa</ion-button> -->
+  <ion-button (click)="newPipa = pipa; enableNewPipa=true;" style="margin: 10px;" color="dark" >editar pipa</ion-button>
+</div>
+
+<div *ngIf="enableNewPipa">
+
+  
+  <h3 class="subtitulo encabezado">Ingrese datos dela pipaa</h3>
+
+<ion-item>
+    <ion-label class="normal" position="floating">
+            Nombre:
+    </ion-label>
+    <ion-input [(ngModel)]="newPipa.nombre" class="normal" type="text" inputmode="text" required="true">
+    </ion-input>
+</ion-item>
+
+<ion-item>
+    <ion-label class="normal" position="floating">
+            Precio litros:
+    </ion-label>
+    <ion-input [(ngModel)]="newPipa.precioLitro" class="normal" type="number" inputmode="numeric" required="true">
+    </ion-input>
+</ion-item>
+
+<ion-item>
+    <ion-label class="normal">
+            foto
+    </ion-label>
+  <ion-buttons slot="end">
+    <ion-button>
+        <label for="file-upload">
+          <ion-icon slot="icon-only" name="images"></ion-icon>
+        </label>
+         <input (change)="newImageUploadPipa($event)" id="file-upload" style="display: none" type="file"  accept="image/*" required="true">
+     </ion-button>
+  </ion-buttons>
+
+</ion-item>
+
+<ion-item>
+    <img class="image" [src]="newPipa.foto">
+  </ion-item>
+
+  <ion-item>
+    <ion-buttons slot="end">
+        <ion-label class="normal"> Cancelar </ion-label>
+      <ion-button (click)="enableNewPipa = false">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+      <ion-label class="normal"> Guardar producto</ion-label>
+       <ion-button (click)="guardarPipa() ">
+        <ion-icon color="primary" slot="icon-only" name="save-sharp"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-item>
+
+</div>
+
+<ion-item *ngFor="let pipa of pipas " >
+<ion-label class="normal">{{pipa.nombre}}</ion-label>
+<ion-buttons slot="end">
+  <ion-button (click)="newPipa = pipa; enableNewPipa=true;">
+      <ion-icon  slot="icon-only" name="create-outline"></ion-icon>
+  </ion-button>
+</ion-buttons>
+</ion-item>
+
 </ion-content>

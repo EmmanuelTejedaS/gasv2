@@ -9,6 +9,8 @@ import { MispedidosComponent } from './pages/mispedidos/mispedidos.component';
 import { canActivate } from '@angular/fire/compat/auth-guard';
 import { map } from 'rxjs/operators';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { OptionmenuComponent } from './pages/optionmenu/optionmenu.component';
+import { PipaComponent } from './pages/pipa/pipa.component';
 
 const isAdmin = (next: any) => map( (user: any) => !!user && '187y100QW5TOVh9L0QrvNxhQq0E3' === user.uid);
 
@@ -19,11 +21,13 @@ const routes: Routes = [
   { path: 'mis-pedidos', component: MispedidosComponent},
   { path: 'pedidos', component: PedidosComponent},
   { path: 'carrito', component: CarritoComponent},
+  { path: 'optionmenu', component: OptionmenuComponent},
+  { path: 'pipa', component: PipaComponent},
   { path: '', component: HomeComponent },
-  { path: '**', redirectTo: 'home', pathMatch: 'full'},
+  { path: '**', redirectTo: 'perfil', pathMatch: 'full'},
 {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'perfil',
     pathMatch: 'full'
   },
 ];

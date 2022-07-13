@@ -27,6 +27,14 @@ export interface Pedido {
     valoracion: number;
  }
 
+ export interface Pipa {
+    nombre: string;
+    precioLitro: number;
+    foto: string;
+    id: string;
+    fecha: Date;
+}
+
  export interface ProductoPedido {
      producto: Producto;
      cantidad: number;

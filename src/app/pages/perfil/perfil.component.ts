@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, AlertController, ToastController } from '@ionic/angular';
+import { MenuController, AlertController, ToastController, NavController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Cliente } from '../../models';
 import { FirebaseauthService } from '../../services/firebaseauth.service';
@@ -29,14 +29,15 @@ export class PerfilComponent implements OnInit {
 
   suscriberUserInfo: Subscription;
 
-  ingresarEnable = false;
+  ingresarEnable = true;
 
   constructor(public menu: MenuController,
               public firebaseauthService: FirebaseauthService,
               public firestorageService: FirestorageService,
               public firestoreService: FirestoreService,
               public alertController: AlertController,
-              public toastController: ToastController) {
+              public toastController: ToastController,
+              private navController: NavController) {
 
                 this.firebaseauthService.stateAuth().subscribe( res => {
                   if (res !== null) {
@@ -114,6 +115,7 @@ async guardarUser() {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   this.firestoreService.createDoc(this.cliente, path, this.cliente.uid).then( res => {
       console.log('guardado con exito', res);
+      this.navController.navigateForward('/optionmenu');
   }).catch(   error => {
     console.log('error', error);
   });
@@ -143,6 +145,7 @@ ingresar(){
   if(credenciales.email.length && credenciales.password.length){
     this.firebaseauthService.login(credenciales.email, credenciales.password).then( res => {
       // this.router.navigate(['/home']);
+      this.navController.navigateForward('/optionmenu');
       console.log('ingreso con exito');
   }).catch ( error =>{
 

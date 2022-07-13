@@ -9,6 +9,8 @@ import { ComponentesModule } from '../componentes/componentes.module';
 import { CarritoComponent } from './carrito/carrito.component';
 import { MispedidosComponent } from './mispedidos/mispedidos.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { OptionmenuComponent } from './optionmenu/optionmenu.component';
+import { PipaComponent } from './pipa/pipa.component';
 
 
 
@@ -18,7 +20,9 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     PerfilComponent,
     CarritoComponent,
     MispedidosComponent,
-    PedidosComponent
+    PedidosComponent,
+    OptionmenuComponent,
+    PipaComponent
   ],
   imports: [
     CommonModule,

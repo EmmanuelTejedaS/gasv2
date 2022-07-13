@@ -1,0 +1,172 @@
+<ion-header>
+  <ion-toolbar>
+          <ion-title color="tertiary" class="subtitulo ion-text-wrap">
+           My Gas  
+          </ion-title>
+
+          <ion-buttons slot="start">
+            <ion-back-button defaultHref="/optionmenu"></ion-back-button>
+        </ion-buttons>
+
+          <ion-buttons slot="end">
+              <ion-button (click)="openMenu()">
+                  <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+              </ion-button>
+              <!-- <ion-back-button defaultHref="/"></ion-back-button> -->
+          </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content>
+    <ion-card>
+        <ion-item>
+          <ion-icon name="leaf-outline" slot="start"></ion-icon>
+
+          <ion-label>pipa</ion-label>
+        </ion-item>
+      
+        <ion-card-content>
+            <ion-img width="50px" height="50px" src="assets/imgs/Pipa.jpg"></ion-img>  
+            <!-- <ion-img class="img-producto" [src]="pipa.foto"></ion-img> -->
+            <ion-grid>
+              <ion-row>
+                <ion-col size="4">
+                  <p style="margin-top: 10px;"  class="normal">comprar por:</p>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-button (click)="litrosEnable=true; dineroEnable=false" size="small"  color="secondary" class="ion-text-sm-left">Litros</ion-button>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-button (click)="dineroEnable=true; litrosEnable=false;" size="small" color="secondary" class="ion-text-sm-left">Dinero</ion-button>
+              </ion-col>
+              </ion-row>
+            </ion-grid>
+      
+            <div *ngIf="litrosEnable" >
+                
+                        <ion-grid>
+                            <ion-row class="ion-justify-content-center">
+                                <ion-col class="normal text-center" size="6" style="border-right: 1px solid #6c757d;">
+                                    <p style="margin-top: 10px;" class="subtitilo">Cantidad en litros</p>
+                                </ion-col>
+                                <ion-col class="normal text-center" size="6">
+                                    <ion-select placeholder="gas por lt"
+                                    [(ngModel)]="selectedOption"
+                                    (ionChange)="ionChange()">
+                           
+                                    <ion-select-option value= 20> 20 lt </ion-select-option>
+                                    <ion-select-option value= 30> 30 lt </ion-select-option>
+                                    <ion-select-option value= 40> 40 lt </ion-select-option>
+                                    <ion-select-option value= 50> 50 lt </ion-select-option>
+                                    <ion-select-option value= 60> 60 lt </ion-select-option>
+                                    <ion-select-option value= 70> 70 lt </ion-select-option>
+                                    <ion-select-option value= 80> 80 lt </ion-select-option>
+                                    <ion-select-option value= 90> 90 lt </ion-select-option>
+                                    <ion-select-option value= 100>100 lt </ion-select-option>
+                           
+                                   </ion-select>
+                                </ion-col>
+                            </ion-row>
+                
+                            <!-- <ion-row class="ion-justify-content-center">
+                                <ion-col class="normal text-center" size="6" style="border-right: 1px solid #6c757d;">
+                                    <ion-button size="small" (click)="pedirPipa()"  color="secondary" class="ion-text-sm-left">efectivo</ion-button>
+                                </ion-col>
+                                <ion-col class="normal text-center" size="6">
+                                    <ion-button size="small" (click)="pedirPipa()"  color="secondary" class="ion-text-sm-left">tarjeta</ion-button>
+                                </ion-col>
+                            </ion-row> -->
+                
+                            </ion-grid>
+
+                            <p style="margin-top: 10px;" class="normal">Total de litros</p>
+                            <p style="margin-top: 10px;" class="normal">{{selectedOption}} lt</p>
+
+                            <p style="margin-top: 10px;" class="normal">cantidad en dinero</p>
+                            <p style="margin-top: 10px;" class="normal">$ {{totalDinero}}</p>
+                        
+            </div>
+
+            <div *ngIf="dineroEnable">
+   
+            <ion-grid>
+                <ion-row class="ion-justify-content-center">
+                    <ion-col class="normal text-center" size="6" style="border-right: 1px solid #6c757d;">
+                        <p style="margin-top: 10px;"  class="subtitilo">Cantidad en dinero</p>
+                    </ion-col>
+                    <ion-col class="normal text-center" size="6">
+                        <ion-select placeholder="Dinero "
+                        [(ngModel)]="selectedOptionDinero"
+                        (ionChange)="ionChangeDinero()">
+               
+                        <ion-select-option value= 200> $ 200 </ion-select-option>
+                        <ion-select-option value= 300> $ 300 </ion-select-option>
+                        <ion-select-option value= 400> $ 400 </ion-select-option>
+                        <ion-select-option value= 500> $ 500 </ion-select-option>
+                        <ion-select-option value= 600> $ 600 </ion-select-option>
+                        <ion-select-option value= 700> $ 700 </ion-select-option>
+                        <ion-select-option value= 800> $ 800 </ion-select-option>
+                        <ion-select-option value= 900> $ 900 </ion-select-option>
+                        <ion-select-option value= 1000> $ 1000 </ion-select-option>
+               
+                       </ion-select>
+                    </ion-col>
+                </ion-row>
+                </ion-grid>
+
+                <p style="margin-top: 10px;" class="normal">cantidad litros</p>
+                <p style="margin-top: 10px;" class="normal">{{totalLitros}} lt</p>
+
+                <p style="margin-top: 10px;" class="normal">Total de dinero</p>
+                <p style="margin-top: 10px;" class="normal">$ {{selectedOptionDinero}}</p>
+               
+            </div>
+
+      
+            <!-- <ion-grid>
+                <ion-row class="ion-justify-content-center">
+                    <ion-col class="normal text-center" size="6" style="border-right: 1px solid #6c757d;">
+                        <p style="margin-top: 10px;"  class="subtitilo">Cantidad en dinero</p>
+                    </ion-col>
+                    <ion-col class="normal text-center" size="6">
+                        <ion-select placeholder="Dinero "
+                        [(ngModel)]="selectedOptionDinero"
+                        (ionChange)="ionChangeDinero()">
+               
+                        <ion-select-option value= 200> $ 200 </ion-select-option>
+                        <ion-select-option value= 300> $ 300 </ion-select-option>
+                        <ion-select-option value= 400> $ 400 </ion-select-option>
+                        <ion-select-option value= 500> $ 500 </ion-select-option>
+                        <ion-select-option value= 600> $ 600 </ion-select-option>
+                        <ion-select-option value= 700> $ 700 </ion-select-option>
+                        <ion-select-option value= 800> $ 800 </ion-select-option>
+                        <ion-select-option value= 900> $ 900 </ion-select-option>
+                        <ion-select-option value= 1000> $ 1000 </ion-select-option>
+               
+                       </ion-select>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="ion-justify-content-center">
+                    <ion-col class="normal text-center" size="6" style="border-right: 1px solid #6c757d;">
+                        <ion-button size="small" (click)="pedirPipa()"  color="secondary" class="ion-text-sm-left">pagar en efectivo</ion-button>
+                    </ion-col>
+                    <ion-col class="normal text-center" size="6">
+                        <ion-button size="small" (click)="pedirPipa()"  color="secondary" class="ion-text-sm-left">pagar con tarjeta</ion-button>
+                    </ion-col>
+                </ion-row>
+                </ion-grid> -->
+
+        </ion-card-content>
+        {{selectedOption}}
+        {{selectedOptionDinero}}
+      </ion-card>
+
+  </ion-content>
+
+  <ion-footer style="margin-bottom: 5px;"> 
+        <ion-button (click)="pedirPipa()" expand="full" class="normal" style="color: white ! important">
+            agregar al carro
+          </ion-button>
+  </ion-footer>

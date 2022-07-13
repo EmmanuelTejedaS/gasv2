@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Producto } from '../../models';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController, NavController } from '@ionic/angular';
 import { CarritoService } from '../../services/carrito.service';
 
 @Component({
@@ -12,7 +12,8 @@ export class ProductoComponent implements OnInit {
   @Input() producto: Producto;
   constructor(public alertController: AlertController,
               public toastController: ToastController,
-              public carritoService: CarritoService) { }
+              public carritoService: CarritoService,
+              private navController: NavController) { }
 
   ngOnInit() {}
 
@@ -33,6 +34,7 @@ export class ProductoComponent implements OnInit {
         handler: ()=>{
           this.carritoService.addProducto(this.producto);
           console.log('se agrego con exito :)');
+          this.navController.navigateForward('/carrito');
         }
       }
       ]

@@ -11,19 +11,33 @@
       </ion-header>
       <ion-content>
 
-        <ion-menu-toggle autoHide=false  *ngIf="admin || usuario">
-          <ion-item  button=true detail=true [routerLink]="['/']" >
-            <ion-label class="normal">Tienda </ion-label>
-            <ion-icon slot="start"  name="storefront-outline"></ion-icon>
+        <ion-menu-toggle autoHide=false  *ngIf="admin || usuario ||repartidor">
+          <ion-item  button=true detail=true [routerLink]="['/perfil']" >
+            <ion-label class="normal">Perfil </ion-label>
+            <ion-icon slot="start"  name="person-circle-outline"></ion-icon>
           </ion-item>
         </ion-menu-toggle>
 
-        <ion-menu-toggle autoHide=false *ngIf="admin || usuario" >
+        <ion-menu-toggle autoHide=false  *ngIf="admin || usuario">
+          <ion-item  button=true detail=true [routerLink]="['/optionmenu']" >
+            <ion-label class="normal">Menu</ion-label>
+            <ion-icon slot="start"  name="cube-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <!-- <ion-menu-toggle autoHide=false  *ngIf="admin || usuario">
+          <ion-item  button=true detail=true [routerLink]="['/home']" >
+            <ion-label class="normal">Tienda </ion-label>
+            <ion-icon slot="start"  name="storefront-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle> -->
+
+        <!-- <ion-menu-toggle autoHide=false *ngIf="admin || usuario" >
           <ion-item  button=true detail=true [routerLink]="['/carrito']" >
             <ion-label class="normal">carrito</ion-label>
             <ion-icon slot="start"  name="cart-outline"></ion-icon>
           </ion-item>
-        </ion-menu-toggle>
+        </ion-menu-toggle> -->
 
         <ion-menu-toggle autoHide="false" *ngIf="admin" >
           <ion-item button="true" detail="true" [routerLink]="['/set-productos']"  >

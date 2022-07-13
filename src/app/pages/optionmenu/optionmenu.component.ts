@@ -1,29 +1,24 @@
-import { Component } from '@angular/core';
-import { FirebaseauthService } from './services/firebaseauth.service';
-import { NotificationsService } from './services/notifications.service';
-import { NavController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { MenuController, NavController } from '@ionic/angular';
+import { FirebaseauthService } from '../../services/firebaseauth.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  selector: 'app-optionmenu',
+  templateUrl: './optionmenu.component.html',
+  styleUrls: ['./optionmenu.component.scss'],
 })
-export class AppComponent {
+export class OptionmenuComponent implements OnInit {
 
   admin = false;
   repartidor = false;
   usuario = false;
   idUsuario = '';
 
-  constructor(private firebaseauthService: FirebaseauthService,
-              private notificationsService: NotificationsService,
-              private navController: NavController,
-    ) {
-    this.initializeApp();
-  }
+  constructor(public menu: MenuController,
+              private firebaseauthService: FirebaseauthService,
+              private navController: NavController) { }
 
-  initializeApp() {
-    console.log('hola');
+  ngOnInit() {
     this.getUid();
   }
 
@@ -65,5 +60,14 @@ export class AppComponent {
           }
     });
 }
+
+  openMenu(){
+    console.log('open menu');
+    this.menu.toggle('principal');
+  }
+
+  onClick(){
+    this.navController.navigateForward('/pipa');
+  }
 
 }

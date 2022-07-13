@@ -42,7 +42,6 @@
     // font-family: 'Raleway', sans-serif;
     font-size: 18 !important;
     font-weight: bold !important;
-    color: black !important;
 }
 
 .normal{
@@ -53,10 +52,13 @@
 }
 
 .encabezado{
-    background: #c7d3e0;
     margin: 10px;
     padding: 10px;
+    border: 5px solid #1c446c;
     text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: #1c446c;
 }
 
 .precio{
@@ -65,4 +67,27 @@
     font-size: 25 !important;
     font-weight: bold !important;
     color: black !important;
+}
+
+.imgOption{
+    border-radius: 100px;
+    background-color: #fefeff;
+    align-content: center;
+    width: auto;
+    margin: auto;
+    margin-top: 30px;
+    display: block;
+    // border: 5px solid #1c6c23;
+}
+
+.fondo{
+    background-color: #1c446c;
+    align-items: center;
+    align-content: center;
+}
+
+.asd{
+    width: 340px;
+    height: 280px;
+    // border: 5px solid #f82206;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from '../../services/firestore.service';
-import { Producto } from '../../models';
+import { Producto, Pipa } from '../../models';
 import { FirestorageService } from '../../services/firestorage.service';
 
 @Component({
@@ -13,11 +13,17 @@ export class SetProductosComponent implements OnInit {
 
   loading: any;
   productos: Producto[] = [];
+  pipas: Pipa[] = [];
   newProducto: Producto;
+  newPipa: Pipa;
   enableNewProductos = false;
+  enableNewPipa = false;
   newImage = '';
   newFile: '';
+  newImagePipa = '';
+  newFilePipa: '';
   private path = 'productos/';
+  private pathPipaDoc = 'pipa/';
 
   constructor(public menu: MenuController,
               public firestoreService: FirestoreService,
@@ -28,6 +34,7 @@ export class SetProductosComponent implements OnInit {
 
   ngOnInit() {
     this.getProductos();
+    this.getPipa();
   }
 
   openMenu(){
@@ -61,6 +68,36 @@ export class SetProductosComponent implements OnInit {
     }
   }
 
+  async guardarPipa(){
+    console.log('guardar pipaaaaaaaaaa');
+    const pathPipaImg = 'productoPipa';
+    const name = this.newPipa.nombre;
+    const preciolt = this.newPipa.precioLitro;
+    const foto = this.newPipa.foto;
+    console.log(name, preciolt);
+    console.log(foto);
+    console.log(pathPipaImg);
+    if(name.length && foto.length && preciolt){
+    // this.presentLoading();
+    const res = await this.firestorageService.uploadImage(this.newFilePipa, pathPipaImg, name);
+    this.newPipa.foto = res;
+    console.log(this.newPipa);
+    console.log(this.pathPipaDoc);
+    console.log(this.newPipa.id);
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    this.firestoreService.createDoc(this.newPipa, this.pathPipaDoc, this.newPipa.id).then( res => {
+      // this.loading.dismiss();
+      this.presentToast('guardado con exito');
+      this.nuevo();
+    }).catch(   error => {
+      this.presentToast('error al guardar');
+      console.log(error);
+    });}else{
+      //this.loading.dismiss();
+      this.presentToast('agrega los datos del producto ');
+    }
+  }
+
   nuevo(){
     this.enableNewProductos = true;
     this.newProducto= {
@@ -73,10 +110,29 @@ export class SetProductosComponent implements OnInit {
     console.log(this.newProducto.id);
   }
 
+  nuevoPipa(){
+    this.enableNewPipa = true;
+    this.newPipa= {
+      nombre: '',
+      precioLitro: null,
+      foto: '',
+      id: this.firestoreService.getId(),
+      fecha: new Date()
+    };
+    console.log(this.newPipa.id);
+  }
+
   getProductos(){
     this.firestoreService.getCollection<Producto>(this.path).subscribe(   res => {
       this.productos = res;
       console.log('productos', res);
+    });
+  }
+
+  getPipa(){
+    this.firestoreService.getCollection<Pipa>(this.pathPipaDoc).subscribe(   res => {
+      this.pipas = res;
+      console.log('pipa', res);
     });
   }
 
@@ -132,6 +188,17 @@ export class SetProductosComponent implements OnInit {
      const reader = new FileReader();
      reader.onload = ((image) => {
          this.newProducto.foto = image.target.result as string;
+     });
+     reader.readAsDataURL(event.target.files[0]);
+   }
+  }
+
+  async newImageUploadPipa(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.newFilePipa = event.target.files[0];
+     const reader = new FileReader();
+     reader.onload = ((image) => {
+         this.newPipa.foto = image.target.result as string;
      });
      reader.readAsDataURL(event.target.files[0]);
    }
